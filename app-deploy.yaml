@@ -1,0 +1,78 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  annotations:
+    architecture: x86_64
+    authoritative-source-url: registry.access.redhat.com
+    build-date: 2019-10-29T16:44:53.794580
+    commit.image.appsody.dev/author: dannil@dk.ibm.com <danniluong@gmail.com>
+    commit.image.appsody.dev/committer: dannil@dk.ibm.com <danniluong@gmail.com>
+    commit.image.appsody.dev/contextDir: C:\danni-microprofile
+    commit.image.appsody.dev/date: Mon Dec 2 12:39:16 2019 +0100
+    commit.image.appsody.dev/message: new2
+    description: This image contains the Kabanero development stack for the java-microprofile
+      collection
+    distribution-scope: public
+    image.opencontainers.org/created: "2019-12-02T13:13:47+01:00"
+    image.opencontainers.org/documentation: https://github.com/danniluong/danni-microprofile
+    image.opencontainers.org/revision: b11266b214d7d51f5b013743fb16ee82dad073f9
+    image.opencontainers.org/source: |
+      https://github.com/danniluong/danni-microprofile/tree/master
+    image.opencontainers.org/url: https://github.com/danniluong/danni-microprofile
+    k8s.io/description: The Universal Base Image is designed and engineered to be
+      the base layer for all of your containerized applications, middleware and utilities.
+      This base image is freely redistributable, but Red Hat only supports Red Hat
+      technologies through subscriptions for Red Hat products. This image is maintained
+      by Red Hat and updated regularly.
+    k8s.io/display-name: Red Hat Universal Base Image 8
+    maintainer: Red Hat, Inc.
+    name: kabanero/java-microprofile
+    namespace: my-javamicro
+    openshift.io/expose-services: ""
+    openshift.io/tags: base rhel8
+    redhat.com/build-host: cpt-1002.osbs.prod.upshift.rdu2.redhat.com
+    redhat.com/component: ubi8-container
+    redhat.com/license_terms: https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI
+    release: "277"
+    stack.appsody.dev/configured: kabanero/java-microprofile:0.2
+    stack.appsody.dev/created: 2019-11-25T13:16:38+0000
+    stack.appsody.dev/revision: 6f8c13fac90188f9e38184dd2d7cfb064679a890
+    stack.appsody.dev/tag: kabanero/java-microprofile:0.2.19
+    summary: Image for Kabanero java-microprofile development
+    url: https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/images/8.1-277
+    vcs-ref: c42933bcdbf9f1c232e981a5e40de257c3534c8e
+    vcs-type: git
+    vendor: Kabanero
+    version: 0.2.10
+  creationTimestamp: null
+  labels:
+    image.opencontainers.org/title: danni-microprofile
+    stack.appsody.dev/version: 0.2.19
+  name: danni-microprofile
+spec:
+  applicationImage: dev.local/danni-microprofile
+  createKnativeService: false
+  expose: true
+  livenessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /health/live
+      port: 9080
+    initialDelaySeconds: 5
+    periodSeconds: 2
+  readinessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /health/ready
+      port: 9080
+    initialDelaySeconds: 5
+    periodSeconds: 2
+    timeoutSeconds: 1
+  service:
+    annotations:
+      prometheus.io/scrape: "true"
+    port: 9080
+    type: NodePort
+  stack: java-microprofile
+  version: 1.0.0
+status: {}
